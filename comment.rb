@@ -1,6 +1,7 @@
-def Comment
+class Comment
   attr_reader :text, :author, :age
-  def intialize(text, author, age)
+
+  def initialize(text, author, age)
     @text = text
     @author = author
     @age = age
