@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'open-uri'
 require_relative 'post'
 require_relative 'comment'
 
@@ -10,7 +11,8 @@ class Scraper
   def initialize(url)
     raise(ArgumentError, "url not valid") if !url || url.strip.empty?
     self.url = url
-    @doc = Nokogiri::HTML(File.open(url))
+    html = open(url)
+    @doc = Nokogiri::HTML(html)
   end
 
   def create_post

@@ -1,5 +1,5 @@
 class Post
-  
+
   attr_reader :comments, :title, :url, :points, :item_id
 
   def initialize(url, title, points, item_id)
