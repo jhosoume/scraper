@@ -1,9 +1,8 @@
-require 'nokogiri'
-
 class Post
+  
   attr_reader :comments, :title, :url, :points, :item_id
 
-  def initialize(url, tile, points, item_id)
+  def initialize(url, title, points, item_id)
     @url = url
     @comments = []
     @title = title

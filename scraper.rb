@@ -8,6 +8,7 @@ class Scraper
   attr_accessor :url
 
   def initialize(url)
+    raise(ArgumentError, "url not valid") if !url || url.strip.empty?
     self.url = url
     @doc = Nokogiri::HTML(File.open(url))
   end
@@ -15,9 +16,8 @@ class Scraper
   def create_post
     title = doc.search("title").text
     points = doc.search(".subtext > span:first-child").text 
-    item_id = doc.search('.subtext > span:first-child').map { |span| span["id"]}.first.scan(/\d+/)
+    item_id = doc.search('.subtext > span:first-child').map { |span| span["id"]}.first.scan(/\d+/).first
     Post.new(url, title, points, item_id)
-    Comment.new(1, 2, 3)
   end
 
   def parse_comments(post)
